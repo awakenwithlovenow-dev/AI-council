@@ -1,0 +1,92 @@
+/* Plain theme for the council hub: white page, black text, one calm accent, clear system fonts.
+   Loaded after the base styles. It only changes colours, fonts and decoration, never layout or behaviour.
+   Used by default in the portable template; the owner's own hub keeps its palette. */
+:root{
+  --night:#ffffff; --night-2:#f6f6f6; --stone:#e9e9e9; --stone-hi:#d4d4d4;
+  --surface:#ffffff; --surface-2:#f4f4f4; --surface-3:#ebebeb;
+  --water-hi:#e8e8e8; --water-mid:#f0f0f0; --water-deep:#fafafa;
+  --gold:#111111; --gold-soft:rgba(17,17,17,.07); --gold-line:rgba(17,17,17,.35); --gold-glow:rgba(17,17,17,.18);
+  --ink:#111111; --ink-dim:#3a3a3a; --ink-faint:#5c5c5c; --line:#cfcfcf;
+  --agree:#1a7f37; --block:#b42318; --needs:#8a5a00;
+  --font-display:"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
+  --font-read:"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
+  --font-ui:"Segoe UI","Helvetica Neue",Arial,system-ui,sans-serif;
+  --radius:6px;
+}
+html{background:#ffffff !important}
+body{background:#ffffff;color:var(--ink);font-size:16px;line-height:1.6}
+body::before{display:none !important;animation:none !important}
+h1,h2,h3,h4{font-weight:600;letter-spacing:0;text-transform:none}
+a{color:#0b3d91}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{
+  outline:3px solid #0b3d91;outline-offset:2px}
+/* the main action is a solid black button with white text; everything else is outlined */
+button,.btn{font-family:var(--font-ui)}
+button.primary,.btn.primary,.primary{background:#111111;color:#ffffff;border:1px solid #111111}
+button.primary:hover,.btn.primary:hover,.primary:hover{background:#2b2b2b}
+input,textarea,select{background:#ffffff;color:#111111;border:1px solid #8a8a8a}
+::placeholder{color:#5c5c5c}
+::selection{background:#111111;color:#ffffff}
+
+/* Pages added in memory-ui.css carry fixed dark colours; restate them for the plain theme */
+.preview-note{background:#f6f6f6;color:#111;border-left-color:#111}
+.skip-link{background:#111;color:#fff}
+.first-steps>a,.first-steps>button{background:#fff;border:1px solid #8a8a8a;color:#111}
+.first-steps strong{color:#111}
+.first-steps span{color:#3a3a3a}
+.memory-page h1,.memory-page h2,.memory-page h3{color:#111}
+.memory-page .lead,.memory-page .muted,.memory-page p{color:#2b2b2b}
+.memory-page .btn,.memory-dialog .btn{background:#111;color:#fff;border:1px solid #111}
+.memory-page .btn:not(.primary),.memory-dialog .btn:not(.primary){background:#fff;color:#111;border:1px solid #6b6b6b}
+.memory-page input:not([type=checkbox]),.memory-page textarea,.memory-page select{background:#fff;color:#111;border:1px solid #6b6b6b}
+.memory-page input::placeholder,.memory-page textarea::placeholder{color:#5c5c5c}
+.memory-page :focus-visible,.memory-dialog :focus-visible{outline:3px solid #0b3d91}
+.memory-panel{background:#fff;border:1px solid #8a8a8a;color:#111}
+.upload-zone{background:#f6f6f6;border:2px dashed #6b6b6b;color:#111}
+.upload-zone.over{background:#ececec;border:2px solid #111}
+.upload-results li,.source-row,.source-row:first-child{border-color:#cfcfcf}
+.upload-results .refused{color:#b42318}
+.memory-page summary{color:#0b3d91}
+.memory-page pre,.memory-dialog pre{background:#f6f6f6;color:#111;border:1px solid #cfcfcf}
+.source-row p{color:#3a3a3a}
+.source-row .source-name{color:#111}
+.memory-dialog{background:#fff;color:#111;border:1px solid #6b6b6b}
+/* sidebar and legacy panels */
+.side{background:#f6f6f6 !important;border-right:1px solid #cfcfcf;color:#111}
+.side a,.side button{color:#111}
+.nav a.active,.nav .on,.nav [aria-current]{background:#111 !important;color:#fff !important}
+.main,.wrap{color:#111}
+.main h1,.main h2,.main h3,.wrap h1,.wrap h2,.wrap h3{color:#111}
+.main p,.main li,.main span{color:inherit}
+
+/* second pass: tiles, notices, claim cards, badges, and legacy inputs found in the browser check */
+.health-summary>div{background:#f6f6f6;border:1px solid #8a8a8a;border-top:3px solid #111;color:#111}
+.health-summary strong{color:#111}
+.health-summary span{color:#3a3a3a}
+.memory-page .badge,.badge{background:#ececec;color:#111;border:1px solid #8a8a8a}
+.memory-notice{background:#f6f6f6;color:#111;border:1px solid #8a8a8a;border-left:4px solid #111}
+.claim-card{background:#fff;color:#111;border:1px solid #8a8a8a}
+.claim-card *{color:inherit}
+textarea,.talk textarea,#talkInput{background:#fff;color:#111;border:1px solid #6b6b6b}
+.progress-line b,.memory-page b{color:#111}
+button.link,.claim-source,.memory-page .link{color:#0b3d91;text-decoration:underline}
+.banner{background:#fff4e5 !important;color:#111 !important;border:1px solid #8a5a00}
+.banner *{color:inherit}
+.qcard{background:#fff !important;background-image:none !important;border:1px solid #8a8a8a;box-shadow:none !important;color:#111}
+.qcard *{color:inherit}
+.chip-off{border:1px dashed #8a8a8a;color:#555;background:#fff}
+/* the template carries no personal artwork: no emblem at the table, no logo image */
+#core-emblem,.core-emblem,#emblem,.centre .emblem{display:none !important}
+.brand img{display:none}
+.core{background:#f6f6f6 !important;border:2px solid #111 !important;box-shadow:none !important}
+.core *{color:#111}
+/* the emblem is drawn from petal shapes inside the table svgs: remove them, and the dark water disc behind */
+.petal,.core .petal,svg .petal{display:none !important}
+.core-rings [fill*="core-water"],.core [fill*="water"]{fill:#f6f6f6 !important}
+.core-rings circle{stroke:#8a8a8a}
+/* home panels were purple gradients */
+.panel{background:#fff !important;background-image:none !important;border:1px solid #8a8a8a !important;box-shadow:none !important;color:#111}
+.panel *{color:inherit}
+.panel .muted,.panel small{color:#3a3a3a}
+
+#skin-picker{color:#111 !important;background:#fff !important;border:1px solid #8a8a8a !important;color-scheme:light}

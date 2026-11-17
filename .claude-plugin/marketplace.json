@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ai-council",
+  "description": "Build an AI council from your own files, notes and meetings: members who debate on paper and hand you decisions and drafts.",
+  "owner": {
+    "name": "AI Council"
+  },
+  "plugins": [
+    {
+      "name": "ai-council",
+      "source": "./plugins/ai-council",
+      "category": "productivity",
+      "description": "Build and run an AI council: members designed from your own material, meetings with independent views and a sign-off check, a local hub app, and a track record."
+    }
+  ]
+}

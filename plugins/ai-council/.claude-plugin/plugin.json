@@ -1,0 +1,8 @@
+{
+  "name": "ai-council",
+  "version": "2.1.0",
+  "author": {
+    "name": "AI Council"
+  },
+  "description": "Build and run an AI council from your own files, notes and meeting transcripts, with a local hub app."
+}

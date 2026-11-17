@@ -1,0 +1,4 @@
+/* The template carries no personal artwork: no emblem at the round table and no logo image. Linked only in
+   the shareable template (tools/build_council_plugin.py); the owner's own hub does not load it. */
+#core-emblem,.core-emblem,#emblem,.centre .emblem,.petal,svg .petal{display:none !important}
+.brand img{display:none}

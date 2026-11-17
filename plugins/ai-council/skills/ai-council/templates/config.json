@@ -1,0 +1,19 @@
+{
+  "owner_name": "",
+  "two_ai": false,
+  "turns": 8,
+  "council_turns": 14,
+  "max_sessions_per_day": 6,
+  "marathon_max_sessions": 6,
+  "turn_timeout_s": 1800,
+  "claude_model": "opus",
+  "second_chair_model": "sonnet",
+  "member_model_claude": "sonnet",
+  "hub_chat_model": "opus",
+  "codex_model": "",
+  "member_engines": {},
+  "opening_round": true,
+  "opening_parallel": 4,
+  "attend_wait_s": 900,
+  "auto_resume": true
+}

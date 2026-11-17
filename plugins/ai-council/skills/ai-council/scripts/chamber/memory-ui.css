@@ -1,0 +1,101 @@
+/* Council palette, with solid reading surfaces. Baseline secondary labels used
+   55% ink at 13.5px. These screens use opaque 16px secondary text. */
+:root{--ink-dim:#d8d1e8;--ink-faint:#c7bfd9;--line:#51436e}
+.skip-link{position:fixed;top:-100px;left:16px;z-index:100;background:var(--gold);color:#150b38;padding:12px}
+.skip-link:focus{top:12px}
+.side{overflow-y:auto}
+.preview-note{margin:16px 32px 0;padding:12px 16px;border-left:3px solid var(--gold);background:#251a58;color:#eee8dd;font-size:14px}
+.first-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0 32px}
+.first-steps>a,.first-steps>button{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:18px;text-align:left;text-decoration:none;border:1px solid #66577e;border-radius:6px;background:#1b1142;color:var(--ink);cursor:pointer}
+.first-steps strong{font-size:18px;color:var(--gold)}
+.first-steps span{font-size:15px;color:var(--ink-dim)}
+.memory-page .wrap{max-width:1120px;padding:36px 36px 60px}
+.memory-page h1{font:38px/1.2 var(--font-display);margin:0 0 12px;color:#fff6de}
+.memory-page h2{font:25px/1.35 var(--font-display);margin:0 0 14px}
+.memory-page h3{font-size:18px;margin:0 0 12px}
+.memory-page p{max-width:76ch}
+.memory-page .lead{font-size:18px;line-height:1.65;color:#d8d1e8;margin:0 0 26px}
+.memory-page .muted{font-size:16px;line-height:1.6;color:#d8d1e8}
+.memory-page .btn,.memory-dialog .btn{min-height:44px;padding:10px 16px;font-size:16px;font-weight:600;white-space:normal}
+.memory-page .btn:not(.primary),.memory-dialog .btn:not(.primary){background:#2e2268;border:1px solid #88799f}
+.memory-page button:disabled{opacity:.6;cursor:not-allowed}
+.memory-page label{display:block;margin-bottom:8px;font-size:16px;font-weight:600}
+.memory-page input:not([type=checkbox]),.memory-page textarea,.memory-page select{width:100%;background:#150b38;border:1px solid #9b8ab5;border-radius:4px;color:#fff;padding:12px;font:16px/1.55 var(--font-ui)}
+.memory-page input::placeholder,.memory-page textarea::placeholder{color:#c7bfd9}
+.memory-page input[type=checkbox]{width:21px;height:21px;accent-color:var(--gold);vertical-align:middle;margin-right:10px}
+.memory-page :focus-visible,.memory-dialog :focus-visible{outline:3px solid #e8c84a;outline-offset:4px}
+.memory-panel{background:#1b1142;border:1px solid #66577e;border-radius:8px;padding:26px;margin:22px 0}
+.memory-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:18px}
+.memory-actions .link{font-size:16px;min-height:44px}
+.upload-zone{border:1px dashed #b7a3d7;padding:28px;background:#251a58;border-radius:8px}
+.upload-zone.over{border:2px solid var(--gold);background:#2e2268}
+.upload-zone h2{margin-bottom:8px}
+.upload-results{padding:0;list-style:none}
+.upload-results li{padding:12px 0;border-bottom:1px solid #66577e;overflow-wrap:anywhere}
+.upload-results .refused{color:#ffb3a4}
+.memory-page details{margin:18px 0}
+.memory-page summary{cursor:pointer;padding:12px 0;font-size:16px;color:#f1d75f;font-weight:600}
+.memory-page pre,.memory-dialog pre{white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;font:15px/1.6 var(--font-ui);max-width:100%;padding:16px;background:#100922;color:#eee8dd}
+.source-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;border-bottom:1px solid #51436e;padding:20px 0;align-items:start}
+.source-row:first-child{border-top:1px solid #51436e}
+.source-row p{margin:6px 0;font-size:15px;color:#d8d1e8}
+.source-row .source-name{font-size:17px;font-weight:600;color:#fff;overflow-wrap:anywhere}
+.source-row .source-path,.claim-source{overflow-wrap:anywhere;word-break:break-word}
+.source-row .memory-actions{margin:0}
+.memory-page .badge{position:static;inset:auto;transform:none;display:inline-block;height:auto;min-height:0;line-height:1.5;padding:3px 8px;border:1px solid #8c7da6;border-radius:4px;color:#eee8dd;font-size:14px;background:#251a58}
+.memory-notice{border-left:3px solid var(--gold);background:#251a58;padding:14px 18px;font-size:16px;overflow-wrap:anywhere;margin:16px 0}
+.memory-error{border-color:#f27a63;color:#ffc0b5}
+.progress-line{display:flex;flex-wrap:wrap;gap:12px 24px;margin:24px 0;padding:16px 0;border-block:1px solid #66577e;font-size:16px}
+.progress-line b{color:#fff;font-weight:600}
+.claim-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.claim-grid.single{grid-template-columns:1fr}
+.claim-card{background:#1b1142;border:1px solid #88799f;border-radius:8px;padding:24px;min-width:0}
+.claim-card .claim-text{font:24px/1.55 var(--font-read);color:#fff6ed;margin:12px 0 20px;overflow-wrap:anywhere}
+.claim-card dl{margin:0;display:grid;grid-template-columns:100px minmax(0,1fr);gap:8px 12px;font-size:15px}
+.claim-card dt{color:#c7bfd9}.claim-card dd{margin:0;overflow-wrap:anywhere;color:#eee8dd}
+.claim-source{display:block;font-size:15px;color:#f1d75f;margin:18px 0 0;text-align:left}
+.claim-card .edit-block{border-top:1px solid #66577e;margin-top:20px}
+.answer-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+.answer-buttons .btn{min-height:52px}
+.claim-history article{padding:16px 0;border-bottom:1px solid #51436e;overflow-wrap:anywhere}
+.claim-history p{font-size:17px;line-height:1.65}
+.health-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:26px 0}
+.health-summary>div{border-top:2px solid #e8c84a;padding:16px;background:#1b1142}
+.health-summary strong{font:30px/1.3 var(--font-display);display:block;margin-bottom:6px}
+.health-summary span{font-size:16px;color:#d8d1e8}
+.health-warning{padding:20px 0;border-bottom:1px solid #66577e}
+.health-warning p{margin:0 0 14px;font-size:17px}
+.health-settings{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.health-settings .muted{font-size:15px}
+.health-settings input[type=number]{max-width:220px}
+.health-table{width:100%;border-collapse:collapse;font-size:16px}
+.health-table td,.health-table th{padding:10px;text-align:left;border-bottom:1px solid #66577e;overflow-wrap:anywhere}
+.health-table td:first-child{max-width:40ch}
+.memory-dialog{background:#1b1142;color:#eee8dd;border:1px solid #b5a3d1;border-radius:8px;max-width:850px;width:calc(100% - 32px);max-height:85vh;padding:26px;overflow:auto}
+.memory-dialog h2{font:28px/1.3 var(--font-display);overflow-wrap:anywhere}
+.memory-dialog p{font-size:17px;line-height:1.6;overflow-wrap:anywhere}
+.source-line{display:block;white-space:pre-wrap;overflow-wrap:anywhere;padding:4px 8px;border-left:3px solid transparent}
+.source-line.target{background:#3b2b62;border-left-color:var(--gold)}
+.source-line b{color:#e8c84a;margin-right:12px}
+@media(max-width:980px){.side{position:relative}.side-foot{width:100%;margin:8px 0;justify-content:flex-start}.side-links{flex-wrap:wrap}.memory-page .wrap{padding:28px 24px 44px}.preview-note{margin:16px 24px}.claim-grid{grid-template-columns:1fr}}
+@media(max-width:560px){
+ .side-foot{width:100%;margin:8px 0;justify-content:flex-start}.side-links{gap:10px 18px}.nav a{min-height:44px}
+ .memory-page .wrap{padding:24px 18px 36px}.preview-note{margin:12px 18px}.memory-page h1{font-size:32px}.memory-page h2{font-size:24px}
+ .memory-panel,.claim-card,.upload-zone{padding:20px 16px}.memory-page .lead{font-size:17px}.claim-card .claim-text{font-size:22px}
+ .first-steps,.health-summary,.health-settings{grid-template-columns:1fr}.first-steps{gap:10px}.source-row{grid-template-columns:1fr}
+ .source-row .memory-actions{justify-content:flex-start}.answer-buttons{grid-template-columns:1fr 1fr}.progress-line{gap:10px 18px}
+ .claim-card dl{grid-template-columns:85px minmax(0,1fr)}.memory-dialog{padding:18px}.memory-page pre{padding:12px}
+ .health-table td,.health-table th{padding:8px 4px}.health-table td:first-child{max-width:18ch}
+}
+.chip-off{display:inline-block;padding:8px 12px;border:1px dashed #88799f;border-radius:6px;color:#c7bfd9;font-size:15px;cursor:default;user-select:none}
+/* sound and voices are removed from the hub */
+#alerts,#voices{display:none !important}
+.fact-steps{display:block;margin:6px 0 14px 1.3em;padding:0;line-height:1.6;max-width:62ch}.fact-steps li{display:list-item;margin:3px 0;text-align:left;font-size:inherit;width:auto}
+.source-row>div{min-width:0}.source-name,.source-path,.source-row p{overflow-wrap:anywhere}
+/* the facts screens (Check facts, adding facts) are hidden unless memory-ui.js turns FACTS on */
+html:not(.facts-on) [data-facts]{display:none!important}
+.fetch-grid{display:grid;grid-template-columns:minmax(160px,220px) 1fr;gap:14px;align-items:start}.fetch-grid select,.fetch-grid textarea{width:100%}
+@media (max-width:700px){.fetch-grid{grid-template-columns:1fr}}
+
+/* the Look menu matches the dark fields (17 Nov 2026); the light looks set their own colours */
+#skin-picker{color:#EEE8DD;background:#251A58;border:1px solid #8a80a8;color-scheme:dark}
