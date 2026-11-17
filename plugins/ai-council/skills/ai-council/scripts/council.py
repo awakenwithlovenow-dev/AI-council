@@ -15,7 +15,7 @@ servers. Codex: `codex exec -s read-only` with the agent bridge switched off, so
 the other mid-turn. The only thing a member can create is a ```draft``` block, which the chair
 saves under outputs/council/drafts/<session>/. See outputs/council/CHARTER.md.
 """
-import argparse, contextlib, datetime, glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile, time, uuid
+import argparse, contextlib, datetime, glob, hashlib, json, os, re, shutil, subprocess, sys, tempfile, threading, time, uuid
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -256,6 +256,59 @@ class MemberError(Exception):
     pass
 
 
+# ------------------------------------------------------------------ usage (17 Nov 2026)
+# Every real call reports what it read and wrote. The chair keeps those figures for the meeting in hand, writes
+# them into the meeting's folder (usage.json) and adds a short Usage section to the minutes. Nothing is
+# estimated: the figures are the ones Claude's own program returns with each answer.
+USAGE, USAGE_LOCK = [], threading.Lock()
+
+
+def note_usage(data, cfg, seconds):
+    u = data.get("usage") or {}
+    num = lambda k: int(u.get(k) or 0)
+    row = dict(at=time.strftime("%H:%M:%S"), who=str(cfg.get("_who") or ""), model=str(cfg.get("claude_model") or "default"),
+               read=num("input_tokens") + num("cache_creation_input_tokens") + num("cache_read_input_tokens"),
+               cached=num("cache_read_input_tokens"), wrote=num("output_tokens"),
+               list_price_usd=round(float(data.get("total_cost_usd") or 0), 6), seconds=int(seconds),
+               steps=int(data.get("num_turns") or 0))
+    with USAGE_LOCK:
+        USAGE.append(row)
+
+
+def file_usage(sdir):
+    """Write the meeting's usage to usage.json, empty the tally for the next meeting, and return the section
+    for the minutes ('' when no real call reported figures, as in a dry run)."""
+    with USAGE_LOCK:
+        rows = list(USAGE)
+        USAGE.clear()
+    if not rows:
+        return ""
+    keys = ("read", "cached", "wrote", "list_price_usd")
+    total = {k: sum(r[k] for r in rows) for k in keys}
+    by = {}
+    for r in rows:
+        b = by.setdefault(r["model"], dict(calls=0, read=0, cached=0, wrote=0, list_price_usd=0.0))
+        b["calls"] += 1
+        for k in keys:
+            b[k] += r[k]
+    for b in list(by.values()) + [total]:
+        b["list_price_usd"] = round(b["list_price_usd"], 4)
+    save_json(sdir / "usage.json", dict(calls=len(rows), **total, by_model=by, rows=rows))
+    lines = ["## Usage", "",
+             f"- Calls to Claude: {len(rows)}.",
+             f"- Read: {total['read']:,} tokens, of which {total['cached']:,} were reused from an earlier call "
+             "(reused reading is the cheap kind).",
+             f"- Written: {total['wrote']:,} tokens."]
+    for m in sorted(by):
+        b = by[m]
+        lines.append(f"- {m}: {b['calls']} call(s), read {b['read']:,}, written {b['wrote']:,}.")
+    lines.append(f"- Size guide: at pay-as-you-go prices this meeting would be about ${total['list_price_usd']:.2f}. "
+                 "On a subscription plan no money is charged; it comes out of the plan's allowance.")
+    log(f"Usage: {len(rows)} calls, read {total['read']:,} tokens ({total['cached']:,} reused), "
+        f"written {total['wrote']:,}; about ${total['list_price_usd']:.2f} at pay-as-you-go prices.")
+    return "\n".join(lines) + "\n"
+
+
 USAGE_PHRASES = ("usage limit", "rate limit", "quota", "credit balance", "limit reached", "hit your limit",
                  "exceeded", "limit will reset", "resets at")
 
@@ -339,15 +392,26 @@ def call_claude(prompt, cfg):
         raise MemberError("Claude Code binary not found.")
     # --no-session-persistence (11 Oct): every headless turn used to be saved as a Claude session, and Codex Desktop
     # imported 74 of them into the owner's Codex list as threads. Nothing a meeting does needs a saved session.
-    cmd = [exe, "-p", "--output-format", "text", "--strict-mcp-config", "--no-session-persistence",
+    cmd = [exe, "-p", "--output-format", "json", "--strict-mcp-config", "--no-session-persistence",
            "--allowedTools", *cfg["claude_allowed_tools"],
            "--disallowedTools", "Edit", "Write", "NotebookEdit", "Bash", "PowerShell", "Agent", "Task"]
     if cfg.get("claude_model"):
         cmd += ["--model", cfg["claude_model"]]
+    started = time.time()
     code, out, err = run(cmd, prompt, cfg["turn_timeout_s"])
-    text = out.strip()
+    text, failed = out.strip(), False
+    try:                                  # the answer arrives wrapped with its usage figures (17 Nov 2026)
+        data = json.loads(text) if text.startswith("{") else None
+    except ValueError:
+        data = None
+    if isinstance(data, dict) and data.get("type") == "result":
+        text = str(data.get("result") or "").strip()
+        failed = bool(data.get("is_error"))
+        note_usage(data, cfg, time.time() - started)
+        if not text and failed:
+            text = f"Claude reported an error ({data.get('subtype') or data.get('terminal_reason') or 'no detail'})."
     head = text.lower()[:300]
-    if not text or code != 0 or (len(text) < 600 and (any(s in head for s in STOP_PHRASES) or is_usage_limit(head))):
+    if not text or code != 0 or failed or (len(text) < 600 and (any(s in head for s in STOP_PHRASES) or is_usage_limit(head))):
         if needs_sign_in((text or err)[:600]):
             raise MemberError(sign_in_help())
         raise MemberError(f"Claude exit {code}: {(text or err).strip()[-800:]}")
@@ -383,7 +447,7 @@ def preflight_claude(cfg):
     """A tiny, cheap call before any session, so a logged-out or rate-limited Claude
     never costs a Codex turn."""
     small = dict(cfg, claude_model="haiku", turn_timeout_s=180, claude_allowed_tools=["Read"])
-    call_claude("Reply with the single word OK.", small)
+    call_claude("Reply with the single word OK.", dict(small, _who="start check"))
 
 
 def call_fake(name, turn):
@@ -979,7 +1043,8 @@ def call_member(member, prompt, cfg):
     eng = (cfg.get("member_engines") or {}).get(member["file"].stem) or ("claude" if member["idx"] % 2 == 0 else "codex")
     if eng == "codex":
         return call_codex(prompt, cfg)
-    return call_claude(prompt, dict(cfg, claude_model=cfg.get("member_model_claude", "sonnet")))
+    return call_claude(prompt, dict(cfg, claude_model=cfg.get("member_model_claude", "sonnet"),
+                                    _who=cfg.get("_who") or member["name"]))
 
 
 def minutes_record(baseline=None):
@@ -1051,7 +1116,7 @@ def panel_review(sid, minutes, cfg, dry):
                   "VETO only when one of your stated veto conditions is met.")
         try:
             text = (f"[dry run] {name} reviews.\nVERDICT: APPROVE" if dry else
-                    call_claude(prompt, dict(cfg, claude_model=cfg["reviewer_model"])))
+                    call_claude(prompt, dict(cfg, claude_model=cfg["reviewer_model"], _who=f"{name} (review)")))
         except MemberError as e:
             text = f"(review failed: {e})"
         m = re.findall(r"VERDICT:\s*\**\s*(APPROVE|OBJECT|VETO)\b(.*)", text, re.I)
@@ -1136,11 +1201,12 @@ def session(args, cfg):
     def speak(name, prompt, turn):
         if args.dry_run:
             return fake_floor(name, turn, members, lead) if floor_mode else call_fake(name, turn)
+        who = dict(cfg, _who=name)
         if name == CHAIR_A:
-            return call_claude(prompt, cfg)
+            return call_claude(prompt, who)
         if name == CHAIR_B:
-            return call_codex(prompt, cfg)
-        return call_member(next(m for m in members if m["name"] == name), prompt, cfg)
+            return call_codex(prompt, who)
+        return call_member(next(m for m in members if m["name"] == name), prompt, who)
 
     seen_notes = [0]
 
@@ -1222,11 +1288,12 @@ def session(args, cfg):
                 return (f"[dry run] {nm} writes its own view. No model was called.\n\nPOSITION: dry run.\nWHY: dry run.\n"
                         f"RISK: none.\nWOULD CHANGE MY MIND: a real meeting."), 0
             def call():
+                who = dict(ocfg, _who=f"{nm} (opening view)")
                 if nm == CHAIR_A:
-                    return call_claude(prompts[nm], ocfg)
+                    return call_claude(prompts[nm], who)
                 if nm == CHAIR_B:
-                    return call_codex(prompts[nm], ocfg)
-                return call_member(next(m for m in members if m["name"] == nm), prompts[nm], ocfg)
+                    return call_codex(prompts[nm], who)
+                return call_member(next(m for m in members if m["name"] == nm), prompts[nm], who)
             return resuming(call, f"the opening view of {nm}", cfg), int(time.time() - started)
 
         log(f"Opening round: {len(seats_open)} seats writing their own views in parallel.")
@@ -1399,7 +1466,8 @@ def session(args, cfg):
         clerk = CHAIR_A if n % 2 == 0 else CHAIR_B
         try:
             mins = call_fake(clerk, 0) if args.dry_run else resuming(lambda: (
-                call_claude if clerk == CHAIR_A else call_codex)(minutes_prompt(clerk, sid, floor, baseline, floor_mode), cfg),
+                call_claude if clerk == CHAIR_A else call_codex)(minutes_prompt(clerk, sid, floor, baseline, floor_mode),
+                                                                dict(cfg, _who=f"{clerk} (minutes)")),
                 "the minutes", cfg)
             mins = DRAFT_RE.sub("", mins).strip()
             body = f"# Minutes, session {sid}\n\nClerk: {clerk}. Turns held: {len(floor)}.\n\n{mins}\n"
@@ -1440,6 +1508,12 @@ def session(args, cfg):
                   and not any(s == "VETO" for s in last_status.values()))
     else:
         agreed = len(statuses) >= 2 and statuses[-1] == statuses[-2] == "CONSENSUS"
+    usage_note = file_usage(sdir)             # real calls only; a dry run has nothing to record
+    if usage_note:
+        for mp in [sdir / "MINUTES.md"] + ([COUNCIL / "LATEST-MINUTES.md"] if not args.dry_run else []):
+            if mp.exists() and f"session {sid}" in read(mp)[:200]:
+                with open(mp, "a", encoding="utf-8") as f:
+                    f.write("\n" + usage_note)
     record = read(sdir / "MINUTES.md")
     ev, ch = EVIDENCE_RE.search(record), CHANGED_RE.search(record)
     save_json(sdir / "outcome.json", dict(outcome="error" if error else ("consensus" if agreed else "no consensus"),
