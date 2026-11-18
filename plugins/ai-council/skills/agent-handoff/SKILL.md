@@ -31,6 +31,7 @@ Every rule here was learned from a real failure.
 - Do not copy the owner's real records to inspect them; use fixtures, or ask.
 - A review of another agent's app is advice. Write it to a file and offer a paste-ready prompt for that agent. Do not edit its code unless the owner asks.
 - Silence recurred in the council build: the system had to prompt "say what you're doing" several times. Give a one-line status before every wait of more than a minute, and whenever a background job reports.
+- It recurred a fourth time on 18 Nov 2026 (about ten prompts), mostly while reading long files and between tool calls in a long chain, not only while waiting. Say one plain line before each step of a chain (reading, patching, testing, rebuilding), not just before waits.
 
 ## Watching long jobs
 - A Monitor expires (the default is 5 minutes). For a single "tell me when done" notice, run a background `until grep -q DONE log; do sleep 10; done; summary` instead. For step-by-step progress, set timeout_ms to the maximum and re-arm on expiry.

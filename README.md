@@ -5,15 +5,15 @@ Build your own AI council: a small board of AI members designed from **your own 
 ## What you get
 
 - **`/council-build`**: connect your material (folders, email, Google Drive, Notion, Zoom, Granola, Fireflies, Otter or any other connector you have). Claude guides you one step at a time through connecting them, reads all of it in stages, keeps a record of what it covered, writes a profile of you and your work, and proposes the members. At the end you confirm by multiple choice only; there is nothing to type. Your council then brings the most important decisions and matters to the table as its first agenda. Colours and the members' final names are chosen afterwards. No earlier experience with Claude is needed.
-- **`/council-meet <topic>`**: a meeting, quick or full, attended live or decided on its own.
-- **`/council-hub`**: a desktop-style app: Home, the live meeting, the round table, Talk with Claude, Files, Questions, the Library and a track record of how decisions turned out. Sources has a "Bring in from a connected app" button: your Claude reads Gmail, Drive, Notion, Slack or meeting notes for you, read-only.
+- **`/council-meet <your question>`**: the everyday way in. Ask in your own words, right in the Claude chat. The council meets (quick or full) and the answer comes back to the same chat: the conclusion and the first step first, then any question for you with answers to click, and a chart or slides if you ask for them.
+- **`/council-hub`** (optional): a desktop-style overview app: Home, the live meeting, the round table, Talk with Claude, Files, Questions, the Library and a track record of how decisions turned out. Sources has a "Bring in from a connected app" button: your Claude reads Gmail, Drive, Notion, Slack or meeting notes for you, read-only.
 - **Meetings that hold up:**
   - every member writes an independent view first;
   - a sign-off check catches dropped objections and unsourced claims;
   - approvals are tied to the exact draft;
   - the minutes keep evidence apart from agreement and say what the meeting changed;
   - decisions get a date to check later.
-- **Skills** Claude uses while building and running it: ai-council, headless-ai-calls, local-app-build, agent-handoff, citation-discipline.
+- **Skills** Claude uses while building and running it: ai-council, headless-ai-calls, local-app-build, agent-handoff, citation-discipline, and persona-research (for researching a public figure as a role-model member, from their own published words).
 
 ## Requirements
 

@@ -53,3 +53,17 @@ Every rule here was learned from a real failure.
 3. A real, cheap run of anything that calls a model (see headless-ai-calls).
 4. The browser at desktop and narrow widths, with refs and DOM checks (see visual-verification).
 5. Restart the real app and confirm it reads the real data.
+
+## Lessons from 17 November 2026
+- Compile every program under the oldest Python it must run on. A Mac's own python3 is 3.9, and a backslash inside an f-string expression needs 3.12.
+- A folder the program scans (`*.md` in a members folder) must hold nothing else with that ending. Notes left there are `.txt`.
+- Stop a process by its name and its command line together. Matching the command line alone also matches the shell that is running the match.
+- Before trusting a port, check that the answer has the app's own shape. Another program may already be serving it.
+- After changing rules or prompts, stop any paused job still running on the old ones, and tell the owner to close and reopen the window so the page reloads.
+- Questions for the owner are one thing each, with answers to press, and say what happens if skipped. A text box is the fallback, not the main way.
+
+## Lessons from 18 November 2026
+- **Check what every start button would actually start.** A folded-away "Continue the list" button would have begun an item from an old agenda built on a plan the owner had set aside. Read the data a button feeds on, not only its code; when the owner retires a plan, the items that depend on it are closed with a visible note, never deleted.
+- **A chat can be the front door.** For a first-time owner, a Claude chat they already know beats a second app. Give the chat small program commands that read results and save answers in the app's own format, so the model never hand-edits the app's files, and keep the app window as an optional overview.
+- **A program launched from a Claude chat inherits that chat's settings.** Strip the session's own variables before any background call (keep a user's own API key), or the calls run through the chat's connection and can fail when the chat closes. Test from inside a chat once.
+- **Read the whole program once before calling it finished.** Tests only reach the paths someone thought of.

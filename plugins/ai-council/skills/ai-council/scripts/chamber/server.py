@@ -983,7 +983,8 @@ def connector_call(prompt, allowed, cheap):
            "--allowedTools", *allowed, "--disallowedTools", *connector_fetch.NO_CHANGE_TOOLS]
     try:
         p = subprocess.run(cmd, cwd=str(PROJECT), input=prompt, capture_output=True, text=True, encoding="utf-8",
-                           errors="replace", timeout=180 if cheap else 900, creationflags=NO_WINDOW)
+                           errors="replace", timeout=180 if cheap else 900, creationflags=NO_WINDOW,
+                           env=chair.clean_env())     # 18 Nov 2026: not the launching chat's own settings
     except subprocess.TimeoutExpired:
         raise RuntimeError("Claude took too long. Try asking for fewer items.")
     text = (p.stdout or "").strip()

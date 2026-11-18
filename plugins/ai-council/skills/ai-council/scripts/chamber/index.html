@@ -1137,7 +1137,7 @@ function waitHTML(){
   const qs = waitQuestions();
   return `<div class="waitcard" id="waitcard" data-key="wait"><h3>${qs.length > 1 ? `The council has ${qs.length} questions for you` : "The council is waiting for you"}</h3>
     <p class="fine">The meeting is paused until you answer${qs.length > 1 ? ". Answer the ones you want; the rest stay on your list" : ""}. Type, or press the microphone and speak.</p>
-    ${qs.map((a,k) => `<div class="q">${inline(a.q)}<small>Asked by ${esc(display(a.by))}, turn ${a.turn}</small></div>
+    ${qs.map((a,k) => `<div class="q">${inline(qparts(a.q).ask)}${qparts(a.q).options.length ? `<br><span class="fine">You can answer: ${qparts(a.q).options.map(esc).join(", or ")}.</span>` : ""}<small>Asked by ${esc(display(a.by))}, turn ${a.turn}</small></div>
       <div class="inputbox"><textarea id="wait-${k}" rows="2" placeholder="Your answer"></textarea><button class="mic" type="button" data-mic="wait-${k}" aria-label="Speak your answer"></button></div><p class="heard" id="heard-wait-${k}"></p>`).join("")}
     <div class="row" style="margin-top:12px"><button class="btn primary" id="send-wait">Send my answer</button><button class="btn" id="skip-wait">Carry on without me</button>
       <button class="link" id="away-wait" title="The council stops waiting for you and decides the rest of this meeting itself">Step away for the rest</button></div></div>`;
@@ -1490,6 +1490,11 @@ function openPickerWith(names){ setPicked(names); $("dlg-pick").close(); openPic
 $("pick-done").onclick = () => { setPicked([...$("pick-list").querySelectorAll("input:checked")].map(i => i.value)); $("dlg-pick").close(); };
 
 /* ================================================================ questions */
+/* 17 Nov 2026: a question may read "the question | OPTIONS: a / b / c | IF SKIPPED: what the council goes on with" */
+function qparts(t){ const p = String(t || "").split(/\s*[|\/]\s*(?=(?:OPTIONS|IF SKIPPED)\s*:)/i), o = {ask:p[0].trim(), options:[], fallback:""};
+  p.slice(1).forEach(x => { const m = x.match(/^(OPTIONS|IF SKIPPED)\s*:\s*([\s\S]*)$/i); if (!m) return;
+    if (/^options/i.test(m[1])) o.options = m[2].split(/\s+\/\s+/).map(s => s.trim()).filter(Boolean).slice(0, 4); else o.fallback = m[2].trim(); });
+  return o; }
 function goQuestion(text){ const qs = openQuestions(); const k = qs.findIndex(q => q.text.startsWith((text||"").slice(0,40).replace(/[*`]/g,""))); S.qIndex = Math.max(0, k); go("questions"); }
 function paintQuestions(){
   const box = $("questions"), qs = openQuestions(), all = S.state?.questions || [];
@@ -1500,19 +1505,21 @@ function paintQuestions(){
   if (sig === S.qSig && box.childElementCount) return;          // nothing changed: never redraw over a half-written answer
   S.qSig = sig;
   box.innerHTML = `<h1 class="title">Your questions</h1>
-    <p class="lede">Decisions only you can make. Type your answer or press the microphone and speak. The council reads it at its next meeting.</p>
+    <p class="lede">Decisions only you can make. Pick an answer, or say it in your own words. The council reads it at its next meeting.</p>
     ${q ? `<div class="qcard">
       <div class="qnav"><span>Question ${S.qIndex+1} of ${qs.length}</span><span class="spacer"></span>
         <button class="btn" id="qprev" ${S.qIndex === 0 ? "disabled" : ""}>Previous</button><button class="btn" id="qnext" ${S.qIndex >= qs.length-1 ? "disabled" : ""}>Next</button></div>
-      <p class="qtext">${inline(q.text)}</p>
+      <p class="qtext">${inline(qparts(q.text).ask)}</p>
+      ${qparts(q.text).options.length ? `<div class="row qopts" style="margin:10px 0 4px;flex-wrap:wrap">${qparts(q.text).options.map((o,k) => `<button class="btn" data-opt="${k}">${esc(o)}</button>`).join("")}</div>` : ""}
+      ${qparts(q.text).fallback ? `<p class="fine">If you leave this, the council goes on with: ${inline(qparts(q.text).fallback)}</p>` : ""}
       ${q.speaker ? `<p class="qfrom">Asked by ${esc(display(q.speaker.toUpperCase()))} in the ${esc(when(q.session))} meeting. <button class="link" id="qsee">See where it was asked</button></p>` : ""}
-      <div class="inputbox"><textarea id="qanswer" rows="4" placeholder="Your answer, in your own words"></textarea><button class="mic" type="button" data-mic="qanswer" aria-label="Speak your answer"></button></div>
+      <div class="inputbox"><textarea id="qanswer" rows="3" placeholder="Or answer in your own words"></textarea><button class="mic" type="button" data-mic="qanswer" aria-label="Speak your answer"></button></div>
       <p class="heard" id="heard-qanswer"></p>
       <div class="row" style="margin-top:10px"><button class="btn primary" id="qsend">Send my answer</button><button class="btn" id="qskip">Skip for now</button></div>
     </div>` : `<div class="qcard"><p class="qtext" style="margin:0">Nothing is waiting for you.</p></div>`}
-    ${answered.length ? `<div class="qlist"><h3>Answered, not yet read by the council</h3>${answered.map((a,k) => `<details><summary>${inline(a.text)}</summary><p class="done-answer">Your answer: ${esc(a.answer)}</p>
+    ${answered.length ? `<div class="qlist"><h3>Answered, not yet read by the council</h3>${answered.map((a,k) => `<details><summary>${inline(qparts(a.text).ask)}</summary><p class="done-answer">Your answer: ${esc(a.answer)}</p>
       <div class="inputbox"><textarea id="qchange-${k}" rows="2" data-key="${esc(a.key)}">${esc(a.answer)}</textarea><button class="mic" type="button" data-mic="qchange-${k}" aria-label="Speak your answer"></button></div><div class="row" style="margin-top:8px"><button class="btn" data-change="qchange-${k}">Change my answer</button></div></details>`).join("")}</div>` : ""}
-    ${filed.length ? `<div class="qlist"><h3>In the council's memory</h3>${filed.map(a => `<details><summary>${inline(a.text)}</summary><p class="done-answer">Your answer: ${esc(a.answer)}</p></details>`).join("")}</div>` : ""}`;
+    ${filed.length ? `<div class="qlist"><h3>In the council's memory</h3>${filed.map(a => `<details><summary>${inline(qparts(a.text).ask)}</summary><p class="done-answer">Your answer: ${esc(a.answer)}</p></details>`).join("")}</div>` : ""}`;
   setupMics(box);
   const qa = $("qanswer");                                         // unfinished answers are kept by question
   if (qa && q){ qa.value = S.qDrafts[q.key] || ""; qa.addEventListener("input", () => { S.qDrafts[q.key] = qa.value; }); }
@@ -1522,6 +1529,10 @@ function paintQuestions(){
   $("qnext")?.addEventListener("click", () => { S.qIndex++; paintQuestions(); });
   $("qskip")?.addEventListener("click", () => { S.qIndex = (S.qIndex + 1) % Math.max(1, qs.length); paintQuestions(); });
   $("qsee")?.addEventListener("click", async () => { S.picked = true; await loadSession(q.session); go("meeting"); select(q.turn - 1, false); $("feed").querySelector(`.msg[data-i="${q.turn-1}"]`)?.scrollIntoView({block:"center"}); });
+  box.querySelectorAll("[data-opt]").forEach(b => b.onclick = async () => {            // one press answers the question
+    const v = qparts(q.text).options[+b.dataset.opt]; stopMic();
+    try { await api("/api/answer", {key:q.key, answer:v}); delete S.qDrafts[q.key]; S.qSig = ""; toast("Saved. The council reads it at its next meeting."); await poll(true); paintQuestions(); } catch (e){ toast(e.message); }
+  });
   $("qsend")?.addEventListener("click", async () => {
     const v = $("qanswer").value.trim(); stopMic();
     if (!v){ toast("Write or say your answer first."); return; }
@@ -1593,12 +1604,12 @@ async function paintLibrary(){
   const head = `<h2 class="sec">${esc(title(s))}</h2><p class="fine" style="margin-top:-6px">${esc(when(s.id))}. <button class="link" id="lib-open">Open the meeting</button></p>`;
   if (!s.minutes) box.innerHTML = head + `<p class="empty">${s.live ? "The outcome appears here when the meeting closes." : "This meeting has no minutes."}</p>${s.drafts.length ? `<h3>Drafts written so far</h3>${drafts}` : ""}`;
   else {
-    const decided = section(s.minutes, /^Decided/i), open = section(s.minutes, /^Still disputed/i);
+    const decided = section(s.minutes, /^Decided/i), open = section(s.minutes, /^Still disputed/i), concl = section(s.minutes, /^The conclusion/i);
     const record = section(s.minutes, /^Outcome record/i), changed = section(s.minutes, /^What the meeting changed/i).replace(/^\s*\**CHANGED:.*$/gmi, "").trim();
     const fixes = (s.repaired ? `<span class="say needs">A problem was found at sign-off and repaired</span>` : "")
       + (s.reclosed ? `<span class="say needs">Signed off again after a late change</span>` : "")
       + (s.evidence ? `<span class="say ${s.evidence === "strong" ? "agree" : s.evidence === "moderate" ? "needs" : "block"}">Evidence: ${esc(s.evidence)}</span>` : "");
-    box.innerHTML = head + `${fixes ? `<div class="sure">${fixes}</div>` : ""}${decided ? `<h3>What was decided</h3><div class="prose">${md(decided)}</div>` : ""}
+    box.innerHTML = head + `${fixes ? `<div class="sure">${fixes}</div>` : ""}${concl ? `<h3>The conclusion</h3><div class="prose">${md(concl)}</div>` : ""}${decided ? `<h3>What was decided</h3><div class="prose">${md(decided)}</div>` : ""}
       ${record ? `<h3>How sure the council is</h3><div class="prose">${md(record)}</div>` : ""}
       ${changed ? `<h3>What the meeting changed</h3><div class="prose">${md(changed)}</div>` : ""}${open ? `<h3>Still open</h3><div class="prose">${md(open)}</div>` : ""}
       <h3>What the council wrote for you</h3>${drafts}<details class="full"><summary>Read the full minutes</summary><div class="prose">${md(s.minutes.replace(/^# .*\n/, ""))}</div></details>`;

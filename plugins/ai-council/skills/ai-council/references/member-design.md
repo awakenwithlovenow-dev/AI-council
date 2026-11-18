@@ -17,6 +17,7 @@ First proven 7-8 Oct 2026. Each rule below exists because skipping it produced a
 11. **Read the neighbours in the source before quoting,** and check every citation line. Check claims in the user's favour as hard as claims against.
 12. **Story conflicts are not always conflicts.** "No interest in the field *before* the first project" does not contradict a later commitment to it. Check the time scope before reporting a contradiction. Years of experience need an as-of date.
 13. **Testimonials keep four separate statuses:** supplied text, original speaker, verbatim accuracy, permission. Anonymising a quote verifies nothing. A user's own canon can exclude names even when the quotes might be real.
+14. **Expertise and standing rules, never history.** A member file holds what the seat knows how to do and the rules it guards. Prices, offers, plans, numbers and past events go in `BRIEF.md` with their date, never in a member file: in November 2026 a council argued from old prices and an event its owner never wanted, because they sat in member files. Calibration events stay short and dated, as lessons about judgement, not as current facts.
 
 ## Template
 
@@ -48,8 +49,8 @@ Status: <full | provisional (APPROVE/OBJECT only)>   (the chair reads "Status: p
 - ...
 Everything else gets an OBJECT, with the smallest repair (a creative seat adds a stronger true alternative).
 
-## Reference facts it carries
-<verified lists, standing rulings, numbers with their status>
+## Standing rules it guards
+<the owner's lasting rules for this seat, and verified lists it checks against (for example the approved testimonials). No prices, offers, numbers or events: those date. They live in BRIEF.md with their date and source, and reach a meeting through the topic, the brief or an attached file.>
 
 ## Voice
 <two or three sentences>

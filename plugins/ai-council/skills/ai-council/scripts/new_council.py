@@ -116,8 +116,9 @@ Council ready at {council}
 
 Next: run /council-build in Claude Code to design the members from your own files, notes and meetings,
 or follow the six prompts in {SKILL / 'prompts'} by hand.
-Open the hub any time:  {sys.executable} {tools / 'chamber' / 'launch.py'}   (or /council-hub)
-Run a meeting:          {sys.executable} {tools / 'council.py'} --topic "your question"   (or /council-meet)
+Ask the council something:  /council-meet your question   (in the Claude chat; the answer comes back there)
+Run a meeting by hand:      {sys.executable} {tools / 'council.py'} --topic "your question"
+Open the hub (optional):    {sys.executable} {tools / 'chamber' / 'launch.py'}   (or /council-hub)
 Check that the council can reach Claude in the background:  {sys.executable} {tools / 'council.py'} --check-claude""")
     return 0 if ok else 1
 
