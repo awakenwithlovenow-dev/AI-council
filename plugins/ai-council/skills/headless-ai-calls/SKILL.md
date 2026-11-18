@@ -66,3 +66,7 @@ Every rule here was learned from a real failure.
 - **Clean the environment of every background call.** A program started from inside a Claude chat inherits about 35 of that session's variables (`CLAUDE*`, `ANTHROPIC*` such as a local base URL, `AI_AGENT*`); its calls then run through the chat's own connection. Pass `env=` with those removed (keep the user's own `ANTHROPIC_API_KEY`) to every `subprocess` call, and make the self-check use exactly the same environment as the real calls.
 - **Strip an echoed record heading.** A speaker sometimes repeats its own `## Turn N, NAME` line at the top of its reply; the chair writes that heading itself, so remove a leading one before saving.
 - **A cap or early exit must return what the caller unpacks.** A daily cap returning a bare `0` where the caller unpacks three values crashed `main()`; no test had reached it. Test the early exits.
+
+## Effort, and lines lost in a repair turn (18 Nov 2026)
+- `claude -p --effort <low|medium|high|xhigh|max>` works headless (checked with one Haiku call). Measured on Haiku: high effort made members write 4 to 6 times more (thinking) and take 12 to 15 s instead of 5. Set it per role, not globally.
+- When a later turn restates part of a structured block (a repair restating CONCLUSION and FIRST STEP), lines it leaves out are lost unless the parser falls back to the earlier turn's line. Ask for the full block in every turn that restates it, and parse with a fallback.

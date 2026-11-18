@@ -4,7 +4,7 @@ The members drafted in step 02 must be checked by an **independent reviewer** be
 - **Default (one AI):** open a **fresh session** of the same AI, ideally on a different model size from the one that drafted (for example, drafted on the largest model, reviewed on the next one down, or the reverse). Do not paste in the designer's reasoning: give it only the files. Fresh context, a different model and an explicitly adversarial role produce real disagreement.
 - **Optional (two AIs):** if a second AI is available (for example Codex alongside Claude), use it as the reviewer instead. If it has an ongoing conversation with the owner, send this through a shared mailbox so it reasons with that context.
 
-Repeat until the reviewer writes SIGN on every file. Rounds of about 1,200-2,000 words. Save every round to disk.
+Repeat until the reviewer writes SIGN on every file, for at most two rounds; anything still disputed after the second is cut or kept only as a labelled hypothesis. Rounds of about 1,200-2,000 words. Save every round to disk.
 
 ---
 

@@ -5,7 +5,8 @@ Build your own AI council: a small board of AI members designed from **your own 
 ## What you get
 
 - **`/council-build`**: connect your material (folders, email, Google Drive, Notion, Zoom, Granola, Fireflies, Otter or any other connector you have). Claude guides you one step at a time through connecting them, reads all of it in stages, keeps a record of what it covered, writes a profile of you and your work, and proposes the members. At the end you confirm by multiple choice only; there is nothing to type. Your council then brings the most important decisions and matters to the table as its first agenda. Colours and the members' final names are chosen afterwards. No earlier experience with Claude is needed.
-- **`/council-meet <your question>`**: the everyday way in. Ask in your own words, right in the Claude chat. The council meets (quick or full) and the answer comes back to the same chat: the conclusion and the first step first, then any question for you with answers to click, and a chart or slides if you ask for them.
+- **`/council-meet <your question>`**: the everyday way in. Ask in your own words, right in the Claude chat. The council meets (quick or full) and the answer comes back to the same chat: the conclusion and the first step first, then two visuals (the decision, and what happens next), any question for you with answers to click, and slides if you ask for them.
+- **`/council-review`**: "where do I stand". Every member looks at you and your business from its own angle, you answer a few questions between rounds, and it ends with an overview page where you mark each finding True, Not quite or Not true.
 - **`/council-hub`** (optional): a desktop-style overview app: Home, the live meeting, the round table, Talk with Claude, Files, Questions, the Library and a track record of how decisions turned out. Sources has a "Bring in from a connected app" button: your Claude reads Gmail, Drive, Notion, Slack or meeting notes for you, read-only.
 - **Meetings that hold up:**
   - every member writes an independent view first;
@@ -18,11 +19,11 @@ Build your own AI council: a small board of AI members designed from **your own 
 ## Requirements
 
 - Claude Code, signed in (the Claude desktop app's Code tab is enough).
-- Background meetings keep their own sign-in, apart from the app's. `/council-build` checks it and walks you through it; by hand, `tools/council/council.py --check-claude` says what to do.
+- Background meetings keep their own sign-in, apart from the app's. `/council-build` checks it and walks you through it; by hand, `python3 tools/council/council.py --check-claude` says what to do.
 - Python 3.9 or newer (a Mac's own `python3` is enough).
 - Windows, Mac or Linux. The hub opens best in Edge or Chrome.
 - Optional: the Codex CLI, for a second AI in the second chair.
-- To bring things in from connected apps: each app must be signed in for Claude Code (in a terminal: `claude`, then `/mcp`). Signing in on claude.ai alone is not enough for background use.
+- To read your apps during setup: connect them in the Claude app under Settings, Connectors (Slack, Gmail, Google Drive and others). Apps connected there reach a chat in the Code tab. Only the hub's optional "Bring in" button, which works in the background, needs them signed in for Claude's own program as well.
 
 ## Install
 
@@ -53,7 +54,7 @@ Then open your project folder in Claude Code and run `/council-build`.
    The app also has a Plugins menu under the **+** button beside the message box. Use it if it offers a place for a GitHub address.
 4. Start a new chat in the same folder, type `/council-build` and press Return.
 
-From there Claude leads: it asks one thing at a time, and every question has ready answers to click.
+From there Claude leads: it asks one thing at a time, and every question has ready answers to click. Now and then Claude asks you to allow a step, and your Mac may ask once to let Claude see a folder such as Downloads: both are normal, click Allow.
 
 A Mac needs Apple's Command Line Tools, which bring `python3` and `git`. The Mac offers them in a window the first time they are needed, and Claude will say when to click Install.
 

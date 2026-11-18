@@ -4,14 +4,14 @@ First proven 7-8 Oct 2026. Each rule below exists because skipping it produced a
 
 ## Rules
 
-1. **One member per distinct body of work.** Merge projects whose history ends where another begins. Meta Ads was folded into Launch: cheap attention never became buyers, and a separate ads seat would push toward spending. Prefer folding a near-duplicate into an existing seat over adding a seat. A second "Community" seat was folded into Experience.
+1. **One member per area of recurring decisions that carries real weight** (see "How the seats are chosen" below). Prefer folding a near-duplicate into an existing seat over adding a seat: a separate seat for cheap attention, such as ads, tends to push toward spending; fold it into the seat that owns finding buyers.
 2. **Give every member a conviction, labelled as a hypothesis, with its evidence.** Members stripped of opinions become copies of the co-chairs and add nothing. A conviction must not smuggle in an untested benchmark (for example, a mentor's "10% of the room" rule) as if it were measured.
 3. **Earn every quality.** Each "best quality" cites a source line. Never write generic virtues.
 4. **Say what is cut.** List the source's blind spots that the member must not carry: over-building, a favourite framework treated as law, reach mistaken for results.
 5. **Evidence discipline section.** `[USER]` means the dossier's author reports the line came from the user; `(mem)`, `(sum)` and `[AI-DRAFT]` never become facts by repetition; a "canon" or a "locked" label is not infallible; other people's numbers are never the user's benchmarks.
-6. **Veto only concrete breaches** of recorded rules: an invented quote or result, a medical or potency claim, a disclosed private method, a pitch that breaks a documented invitation-only rule. Preferences (a hook, a price idea, scaling speed) get OBJECT with a repair.
+6. **Veto only concrete breaches** of recorded rules: an invented quote or result, a health or effect claim the owner's rules forbid, a disclosed private method, a pitch that breaks one of the owner's documented rules. Preferences (a hook, a price idea, scaling speed) get OBJECT with a repair.
 7. **Calibrate on real events.** Two or three moments from the record: the situation, what the member would have said, what actually happened. Invented calibration cases mark a member as **provisional**.
-8. **Give the member what it needs to know.** The roster of seats (a reviewer without it invented a "Money seat" and a "Ritual seat"). Key reference lists (a Canon member without the verified-testimonial list claimed none existed).
+8. **Give the member what it needs to know.** The roster of seats (a reviewer without it invented a "Money seat" and a "Ritual seat"). Key reference lists (a truth seat without the verified-testimonial list claimed none existed).
 9. **Keep it short.** Aim for 900-1,100 words. The chair sends the whole file every turn; depth goes in a linked dossier.
 10. **State boundaries with neighbouring seats** in one line each. Shared issues get one coordinated review, not repeated audits.
 11. **Read the neighbours in the source before quoting,** and check every citation line. Check claims in the user's favour as hard as claims against.
@@ -62,7 +62,22 @@ Everything else gets an OBJECT, with the smallest repair (a creative seat adds a
 - **X:** path (line numbers)
 ```
 
-## Seat patterns that worked
+## How the seats are chosen (from the owner's material)
+
+Added November 2026, so that every owner's council is chosen the same way and each seat can show why it exists.
+
+1. **Decisions first.** List what the owner keeps deciding, asking about or struggling with, each with a count from the coverage record ("pricing: 41 of 380 emails"). The seats exist to argue these decisions, not to mirror departments.
+2. **Group them into areas.** Each area of the business the decisions fall in is a candidate seat: for example offers and prices, finding clients, the client's experience, money and time, the owner's voice. The patterns at the end are common, not required.
+3. **Weight decides.** A full seat needs enough material to earn its qualities and to find two or three real calibration moments. With too little, fold the area into its neighbour or seat it as provisional (it may object, never veto).
+4. **The fewest that cover everything,** three to seven. A meeting seats only the members its topic needs, but every extra seat is one more voice to read and one more file sent in each meeting it joins.
+5. **One creative seat** proposes the boldest true version first. A council of checkers finds faults but never imagines.
+6. **Different angles, never forced disagreement.** Each seat looks at the business from its own area, with its own conviction, a labelled hypothesis from the material. Test for duplicates: on a real decision from the material, would two seats say anything different? If not, merge them. Never make a seat contrary for its own sake: an objection must come from its area and its evidence. Why: one study (Wynn, Satija and Hadfield, 2025, on reasoning tasks with right answers) found AI agents giving up right answers to agree with their peers, and in October 2026 five of seven independent views in one council converged on the most prominent thing in its brief. Neither shows that opposing convictions make better advice; the council's main defences are elsewhere: independent first views, the challenger, a short floor and strong models.
+7. **Roles, not people.** People named in the material (staff, clients, mentors) never become seats. A public figure the owner looks up to becomes a role model only by the owner's choice, built from their own recorded words with the persona-research skill, always provisional.
+8. **Red lines come from the owner's rules,** found in the material or given at setup. A seat's preference is an objection, never a veto.
+9. **The owner decides.** Each seat is shown in one line with its reason and count: Keep or Leave out. A left-out seat's remit passes to its nearest neighbour, noted in the seat table.
+10. **Every seat is in the seat table.** The co-chair picks each meeting's seats from the table's remits; a seat without a row is left out of meetings in its own field.
+
+## Seat patterns from one earlier council (examples, not a template)
 
 - **Truth and voice** (canon, biography, proof, product representation, brand rules).
 - **The record** (historical and scientific evidence; sourced teaching).

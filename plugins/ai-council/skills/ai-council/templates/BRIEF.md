@@ -8,7 +8,6 @@ Every speaker reads this, so keep it short and current. Prompt 00 (Intake) fills
 ## Inputs (identical for every speaker)
 | File | What it is |
 |---|---|
-| `outputs/council/PRECEDENTS.md` | What has been decided, tried and learned. Check it before proposing anything |
 | `outputs/council/members/dossiers/` | The source dossiers each member was built from |
 | <path> | <what it is> |
 

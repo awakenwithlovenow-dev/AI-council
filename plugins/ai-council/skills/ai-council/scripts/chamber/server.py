@@ -621,7 +621,7 @@ def list_talks():
 
 def talk_prompt(talk, msg, resume):
     files = [f"outputs/council/files/{n}" for n in msg.get("files") or [] if (FILES_DIR / n).is_file()]
-    shared = ("He has shared these files with you. Read them before you answer:\n"
+    shared = ("They have shared these files with you. Read them before you answer:\n"
               + "\n".join(f"- {f}" for f in files) + "\n\n") if files else ""
     if resume:
         return shared + "The owner says:\n" + msg["text"]

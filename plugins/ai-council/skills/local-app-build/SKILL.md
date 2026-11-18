@@ -51,7 +51,7 @@ Every rule here was learned from a real failure.
 1. Unit or stub tests on a scratch copy of the data (an env var for the project root).
 2. A scripted run of every rare path.
 3. A real, cheap run of anything that calls a model (see headless-ai-calls).
-4. The browser at desktop and narrow widths, with refs and DOM checks (see visual-verification).
+4. The browser at desktop and narrow widths, with refs and DOM checks.
 5. Restart the real app and confirm it reads the real data.
 
 ## Lessons from 17 November 2026

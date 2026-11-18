@@ -4,10 +4,10 @@
 
 ## Members
 
-- **Co-chairs:** CLAUDE (headless `claude -p`) and CODEX (headless `codex exec`). If Codex is not installed, the chair runs the second co-chair on Claude with a different model.
+- **Co-chairs:** CLAUDE (headless `claude -p`) and the CHALLENGER, a second Claude on a different model whose job is to push back. If the owner adds Codex (headless `codex exec`), it can take the second chair.
 - **Seated members:** the persona files in `members/approved/`. Each owns one seat; the roster is in `SEATS-ROSTER.txt`.
 - **THE CHAIR** is a script (`tools/council/council.py`), not a model. It passes the floor, keeps the transcript, saves drafts and enforces the limits below.
-- **<OWNER>** owns every decision that changes what is being built. They read the minutes and `FOR-OWNER.md` (rename freely) when they choose.
+- **<OWNER>** owns every decision that changes what is being built. They read the minutes and `FOR-OWNER.md` when they choose.
 
 Every speaker gets the same files every turn: this charter, `BRIEF.md`, `AGENDA.md`, `NEXT-AGENDA.md`, the last minutes and the transcript so far.
 

@@ -11,7 +11,7 @@ You are designing the persona members of my AI council from the dossiers attache
 **Then produce six things, in this order.**
 
 ### 1. The seats
-Propose the **fewest distinct seats** that cover the material. One seat per real body of work. Merge a project into another seat when its history ends where the other begins, or when a separate seat would push the council toward something the owner has ruled out. Prefer strengthening an existing seat over adding a near-duplicate.
+Propose the **fewest distinct seats** that cover the material, chosen as `references/member-design.md` describes under "How the seats are chosen" (decisions first, weight decides, different angles). One seat per real body of work. Merge a project into another seat when its history ends where the other begins, or when a separate seat would push the council toward something the owner has ruled out. Prefer strengthening an existing seat over adding a near-duplicate.
 
 Include **one creative seat** whose job is to propose the boldest true version first. Without it, a council of checkers finds faults but never imagines. A seat built without its own project dossier is **provisional**: it may APPROVE or OBJECT, never VETO, until real evidence exists. For each seat give a title, its remit in one line, its boundaries with each neighbouring seat, and which dossier it comes from.
 
@@ -25,7 +25,7 @@ Use this structure:
 - **What is cut from the source:** its blind spots, which the member must not carry.
 - **5 to 7 questions it always asks.**
 - **VETO:** concrete breaches of recorded rules only. Everything else gets an OBJECT with the smallest repair; a creative seat adds a stronger true alternative.
-- **Reference facts it carries:** the verified and excluded names, the standing rulings, and the numbers with their status. A member without its reference list will invent a gap.
+- **Standing rules it guards:** the owner's lasting rules for this seat and the verified lists it checks against (for example approved testimonials, excluded names). No prices, offers, numbers or past events: those date, and live in BRIEF.md with their date and source. A member without its lists will invent a gap.
 - **Voice:** two or three sentences.
 - **2-3 calibration examples from real events:** the situation, what it would have said, what happened. Never constructed examples, unless the seat is marked provisional.
 - **Source key.**
