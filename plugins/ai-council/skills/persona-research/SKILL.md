@@ -88,3 +88,10 @@ identity in three lines; what they stand for; how they reason; the questions the
 - **A pack for the council program holds:** `member-<name>.md` (Status: provisional, speaks as "<name>'s approach", lists where the person is silent, points to its dossier, ends with the council's usual "On this council" lines), `dossier.md`, the research and notes, and `roster-line.txt` with one row for the seat table. Without the roster row the co-chair never seats it.
 - **Check every line of the member file against the dossier,** and test the seat once in a real cheap meeting on a topic in its field: it should be seated, speak only from its tags, and object rather than veto.
 - **Only open another project's research with the owner's explicit word,** and copy only the files named.
+
+## Handing a role model to another owner (19 Nov 2026)
+- **Three layers, in the same folder layout:** the one-page member file (always in front of the member), `dossier.md` (everything, tagged to source and minute), and `research/` (the organised file plus one notes file per interview). Add `roster-line.txt`, one seat-table row. Zip it as `<name>-role-model.zip`; the council's setup unpacks it.
+- **Remove what was written about the first owner** before it leaves: sections such as "What applies to this case", "Fit for this council", "What does not apply" and "Seat verdict", in every research and notes file. Mark each removal in place, and add a note at the top of the dossier saying which cited sections were removed.
+- **Write the member file from the dossier only,** one page (900 to 1,100 words), with the person's silent topics listed, and end it with the line to check before crediting a rule, figure or quote.
+- **Scan the pack** for the first owner's name, business and products before sending.
+- **A one-page member with look-ups beat a long one** in a blind test (same usefulness, two thirds of the cost per meeting); a medium file (about 2,000 words) was weakest on facts. Do not hand over long member files.

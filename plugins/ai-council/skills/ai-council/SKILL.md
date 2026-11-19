@@ -123,6 +123,13 @@ Answer plainly:
 - 7 role-model members x 3 questions x 2 runs x 3 versions, graded blind by Opus, plus one meeting per version. Long files (about 4,500 words carried every turn) gave the same usefulness and voice as one-page files, slightly safer facts, and cost about two thirds more per meeting.
 - **Use a one-page member file with the dossier on disk and look-ups on.** Members read the dossier when a question needs a detail (half the method questions, most "what does the record say" questions) and never for a plain judgement; accuracy then matches long files. Without look-ups, members invented a stance on a silent topic 3 times in 14.
 - The error left in every version was a rule credited to the wrong person: tell members to check the dossier before attributing a rule, figure or quote.
+- Medium files (about 2,000 words) were tested too and did worst on facts: members looked things up far less (about 10% against 45%) without the file holding the whole record. One page with look-ups stays the choice.
+
+## Owner-facing checks stay small (19 Nov 2026)
+- A facts page holds at most 25 items; the rest wait for a later round or a meeting's question. No bookkeeping columns the owner never reads. An after-meeting check says nothing when all is right and at most three lines when not.
+- A fact sheet per meeting (one shared search, conflicts flagged) beats letting every member launch helpers: seven members searching in parallel multiplies cost and time for the same searches. Members keep their own file look-ups.
+- In a council with a blank slate, old dossiers and reports are history, never facts on a fact sheet.
+- Four confirmation questions per round is enough; list the rest for later instead of opening a second round at once.
 
 ## This plugin's extras: the hub and the commands
 

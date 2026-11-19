@@ -70,3 +70,10 @@ Every rule here was learned from a real failure.
 ## Effort, and lines lost in a repair turn (18 Nov 2026)
 - `claude -p --effort <low|medium|high|xhigh|max>` works headless (checked with one Haiku call). Measured on Haiku: high effort made members write 4 to 6 times more (thinking) and take 12 to 15 s instead of 5. Set it per role, not globally.
 - When a later turn restates part of a structured block (a repair restating CONCLUSION and FIRST STEP), lines it leaves out are lost unless the parser falls back to the earlier turn's line. Ask for the full block in every turn that restates it, and parse with a fallback.
+
+## Testing council or prompt variants (19 Nov 2026)
+- **Use the program's own prompt builders** (for the council: `opening_prompt` and `call_member`, imported with `COUNCIL_PROJECT` set to a scratch copy), so a test matches real conditions.
+- **One trial call first,** then the full run. Run every variant at the same time, each in its own scratch project, so time of day and model load fall on all of them alike.
+- **`num_turns` in the JSON result tells you whether a call used tools** (more than 1 means it looked something up); record it with tokens, cost and seconds for every answer.
+- **Grade blind and one answer at a time,** against the ground truth, by a strong model that may read the sources; then check two or three of the grader's claims on the page before reporting them.
+- **Ask the questions that separate the variants:** a judgement call, a question that needs a specific detail, and a trap on a topic the source is silent on.
