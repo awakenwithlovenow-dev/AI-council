@@ -42,6 +42,7 @@ Every speaker gets the same files every turn: this charter, `BRIEF.md`, `AGENDA.
 - **The owner attending.** Questions for the owner are collected and asked once, before the decision. A turn stops the meeting at once only with `STATUS: BLOCKED`. The owner can step away, and Pause holds a running meeting between turns.
 - **The minutes** add an Outcome record (evidence strength, agreement and dissent, the best minority argument, what it depends on, what would overturn it, missing evidence), "What the meeting changed" (against the lead co-chair's own first view), and "To check later" lines that become the track record the owner marks over time.
 - **Revised drafts** never overwrite: superseded versions are renamed "(replaced at turn N)".
+- **Facts (added November 2026).** Facts come from `BRIEF.md`, `outputs/council/inputs/FACTS.md` and any fact sheet attached to the meeting. Anything marked UNCONFIRMED there is named as unconfirmed and never argued from; if the decision needs it, it becomes one of the meeting's questions for the owner. A rule, figure or quote is credited to a person only after checking it in the brief, the facts register or that person's dossier.
 
 ## How the council learns (added 8 Oct 2026)
 

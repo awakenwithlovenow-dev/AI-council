@@ -5,7 +5,7 @@ Build your own AI council: a small board of AI members designed from **your own 
 ## What you get
 
 - **`/council-build`**: connect your material (folders, email, Google Drive, Notion, Zoom, Granola, Fireflies, Otter or any other connector you have). Claude guides you one step at a time through connecting them, reads all of it in stages, keeps a record of what it covered, writes a profile of you and your work, and proposes the members. At the end you confirm by multiple choice only; there is nothing to type. Your council then brings the most important decisions and matters to the table as its first agenda. Colours and the members' final names are chosen afterwards. No earlier experience with Claude is needed.
-- **`/council-meet <your question>`**: the everyday way in. Ask in your own words, right in the Claude chat. The council meets (quick or full) and the answer comes back to the same chat: the conclusion and the first step first, then two visuals (the decision, and what happens next), any question for you with answers to click, and slides if you ask for them.
+- **`/council-meet <your question>`**: the everyday way in. Ask in your own words, right in the Claude chat. The council meets (quick or full) and the answer comes back to the same chat: the conclusion and the first step first, then two visuals (the decision, and what happens next), any question for you with answers to click, and an overview page if you want one. Before it meets, Claude prepares a fact sheet for your question; afterwards it checks the figures, and tells you only if something is off.
 - **`/council-review`**: "where do I stand". Every member looks at you and your business from its own angle, you answer a few questions between rounds, and it ends with an overview page where you mark each finding True, Not quite or Not true.
 - **`/council-hub`** (optional): a desktop-style overview app: Home, the live meeting, the round table, Talk with Claude, Files, Questions, the Library and a track record of how decisions turned out. Sources has a "Bring in from a connected app" button: your Claude reads Gmail, Drive, Notion, Slack or meeting notes for you, read-only.
 - **Meetings that hold up:**
@@ -13,7 +13,8 @@ Build your own AI council: a small board of AI members designed from **your own 
   - a sign-off check catches dropped objections and unsourced claims;
   - approvals are tied to the exact draft;
   - the minutes keep evidence apart from agreement and say what the meeting changed;
-  - decisions get a date to check later.
+  - decisions get a date to check later;
+  - facts live in one register, the important ones are checked against the original, and anything that cannot be verified stays "unconfirmed" until you confirm it.
 - **Skills** Claude uses while building and running it: ai-council, headless-ai-calls, local-app-build, agent-handoff, citation-discipline, and persona-research (for researching a public figure as a role-model member, from their own published words).
 
 ## Requirements

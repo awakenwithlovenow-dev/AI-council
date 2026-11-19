@@ -18,6 +18,7 @@ First proven 7-8 Oct 2026. Each rule below exists because skipping it produced a
 12. **Story conflicts are not always conflicts.** "No interest in the field *before* the first project" does not contradict a later commitment to it. Check the time scope before reporting a contradiction. Years of experience need an as-of date.
 13. **Testimonials keep four separate statuses:** supplied text, original speaker, verbatim accuracy, permission. Anonymising a quote verifies nothing. A user's own canon can exclude names even when the quotes might be real.
 14. **Expertise and standing rules, never history.** A member file holds what the seat knows how to do and the rules it guards. Prices, offers, plans, numbers and past events go in `BRIEF.md` with their date, never in a member file: in November 2026 a council argued from old prices and an event its owner never wanted, because they sat in member files. Calibration events stay short and dated, as lessons about judgement, not as current facts.
+15. **One page, and check before crediting.** Keep the file to about one page (900 to 1,100 words) and leave depth in the dossier, which the member may read: in a November 2026 test, members carrying the whole dossier every turn were no more useful and cost about two thirds more per meeting. End every member file with: "Before you state a figure or credit a rule or quote to anyone, check it in BRIEF.md, FACTS.md or the dossier, and call anything unconfirmed 'unconfirmed'." In that test, the error left in every meeting was a rule credited to the wrong person.
 
 ## Template
 
@@ -60,6 +61,8 @@ Everything else gets an OBJECT, with the smallest repair (a creative seat adds a
 
 ## Source key
 - **X:** path (line numbers)
+
+Before you state a figure or credit a rule or quote to anyone, check it in BRIEF.md, FACTS.md or the dossier, and call anything unconfirmed 'unconfirmed'.
 ```
 
 ## How the seats are chosen (from the owner's material)

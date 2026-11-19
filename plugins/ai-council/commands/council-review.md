@@ -8,7 +8,7 @@ Talk to the owner in plain words, one short message at a time. No file paths, co
 
 Keep everything in `outputs/council/reviews/<today's date>/`. Nothing is published, sent or bought.
 
-1. **Check the brief.** Read `outputs/council/BRIEF.md` and `outputs/council/memory/RULINGS.md`. A review is only as good as the brief: it should hold who the owner is, the story in their own words with dates, what they sell and for how much, the numbers, what is settled and what is not. If the brief is thin, say so in one line and offer: read more material first (run `/council-build` again, which then refreshes only what is new) / go on with what there is.
+1. **Check the brief.** Read `outputs/council/BRIEF.md`, `outputs/council/inputs/FACTS.md` (where it exists) and `outputs/council/memory/RULINGS.md`. A fact marked UNCONFIRMED stays marked so in every file of the review. A review is only as good as the brief: it should hold who the owner is, the story in their own words with dates, what they sell and for how much, the numbers, what is settled and what is not. If the brief is thin, say so in one line and offer: read more material first (run `/council-build` again, which then refreshes only what is new) / go on with what there is.
 2. **Solo round.** One helper subagent per approved member (every `.md` in `outputs/council/members/approved/`, role models included), all at once, on Sonnet. Each helper gets: the brief, the rulings, its member file, and a role model's own `dossier.md` when the member file names one. It may read files, never the web. Each answers alone, without seeing the others, these six questions:
    1. Strengths and expertise;
    2. Weaknesses and blind spots;
