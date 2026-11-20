@@ -132,6 +132,9 @@ Answer plainly:
 - In a council with a blank slate, old dossiers and reports are history, never facts on a fact sheet.
 - Four confirmation questions per round is enough; list the rest for later instead of opening a second round at once.
 
+## How many members (tested 20 Nov 2026)
+- The chair seats three or four members per meeting whatever the roster holds, so roster size barely changes the cost of one meeting and did not change the decision (five against seven, two questions, blind judge split one each; five about a fifth cheaper). Five to seven are all workable: keep a seat only if real questions would seat it and it brings a view no other seat holds. After five to ten meetings, read the seating lines in `chair.log` ("Seated for this topic") and offer to drop a member that was never seated. Two seats that look alike on paper can still add different views in practice; judge by what each says, not by the remit line.
+
 ## This plugin's extras: the hub and the commands
 
 Installing the plugin adds four commands and a desktop-style app.
