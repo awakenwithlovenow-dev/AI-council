@@ -44,6 +44,8 @@ Build your own AI council: a small board of AI members designed from **your own 
 
 Then open your project folder in Claude Code and run `/council-build`.
 
+**Updating.** When a new version comes out, update the plugin, then run `/council-build` in your council folder. It brings the council program up to date as well (the old copy is kept) and reads only what is new.
+
 ## First time, on a Mac
 
 1. Install the Claude desktop app and sign in.

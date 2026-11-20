@@ -3,6 +3,7 @@
   python new_council.py                          set it up in the current folder
   python new_council.py --project PATH           set it up in PATH
   python new_council.py --owner "Sam Rivera"     also record the owner's name (shown in the hub)
+  python new_council.py --update-program         bring an existing council's program up to date with this version
 
 Creates outputs/council/ (rules, brief, agenda, settings, memory) and tools/council/ (the meeting program and the
 hub app), runs a dry-run meeting with no AI calls to prove the plumbing, and prints the next steps.
@@ -51,17 +52,56 @@ def desktop_icon(root, tools):
         print("  desktop icon    skipped:", str(e)[:200])
 
 
+def update_program(root, tools):
+    """Bring the council program in tools/council/ up to date with this plugin version (added 20 Nov 2026: a
+    plugin update alone never reached a council already set up, because setup never overwrites a file).
+    The council's own files in outputs/council/ are never touched. Each replaced file is kept first in
+    tools/council/archive/before-update-<date>/, so nothing is lost."""
+    import ast, datetime, filecmp
+    if not (tools / "council.py").exists():
+        print("No council here yet: run without --update-program to set one up.")
+        return 1
+    keep = tools / "archive" / ("before-update-" + datetime.datetime.now().strftime("%Y-%m-%d-%H%M"))
+    pairs = [(SKILL / "scripts" / f, tools / f)
+             for f in ["council.py", "memory_tool.py", "intake_tool.py", "converse.py", "run-council.cmd"]]
+    pairs += [(f, tools / "chamber" / f.name) for f in sorted((SKILL / "scripts" / "chamber").iterdir()) if f.is_file()]
+    for src, _ in pairs:                       # never copy in a program that does not parse
+        if src.suffix == ".py":
+            ast.parse(src.read_text(encoding="utf-8"))
+    changed = 0
+    for src, dest in pairs:
+        if dest.exists() and filecmp.cmp(src, dest, shallow=False):
+            continue
+        if dest.exists():
+            old = keep / dest.relative_to(tools)
+            old.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(dest, old)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(src, dest)
+        changed += 1
+        print("  updated         " + str(dest.relative_to(root)))
+    if changed:
+        print(f"Updated {changed} program file(s). The old copies are kept in {keep.relative_to(root)}.")
+    else:
+        print("The council program is already up to date.")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--project", default=".")
     ap.add_argument("--owner", default="")
     ap.add_argument("--no-icon", action="store_true", help="do not put a The Council icon on the desktop")
+    ap.add_argument("--update-program", action="store_true",
+                    help="bring an existing council's program up to date; the council's own files are not touched")
     args = ap.parse_args()
     if sys.version_info < (3, 9):
         print(f"Python 3.9 or newer is needed; this is {sys.version.split()[0]}.")
         return 1
     root = Path(args.project).resolve()
     council, tools = root / "outputs" / "council", root / "tools" / "council"
+    if args.update_program:
+        return update_program(root, tools)
     made = []
 
     def put(src, dest):

@@ -44,6 +44,7 @@ DEFAULTS = dict(
     claude_model="opus",        # the lead co-chair
     two_ai=False,               # True = second co-chair is Codex (if installed); False = a Claude CHALLENGER
     second_chair_model="sonnet",  # model for the CHALLENGER (single-AI mode): a different model gives a different view
+    second_chair_effort="",     # effort for the CHALLENGER (low/medium/high/xhigh/max); empty = the CLI default
     codex_model="",             # empty = Codex's own default from ~/.codex/config.toml
     claude_allowed_tools=["Read", "Grep", "Glob", "WebSearch", "WebFetch"],
     reviewer_model="sonnet",    # persona reviewers: STANDARD tier, one call per approved member per session
@@ -451,8 +452,10 @@ def file_usage(sdir):
     return "\n".join(lines) + "\n"
 
 
+# 20 Nov 2026: "You've hit your 5-hour limit · resets 1:30pm" matched none of these, so a meeting on another
+# owner's Mac stopped at turn 19 instead of waiting; "hit your", "hour limit" and "weekly limit" now catch it.
 USAGE_PHRASES = ("usage limit", "rate limit", "quota", "credit balance", "limit reached", "hit your limit",
-                 "exceeded", "limit will reset", "resets at")
+                 "exceeded", "limit will reset", "resets at", "hit your", "hour limit", "weekly limit")
 
 
 def is_usage_limit(msg):
@@ -626,7 +629,9 @@ def call_codex(prompt, cfg):
     if not exe or not cfg.get("two_ai"):
         # Single-AI mode (the default) or no Codex installed: run this speaker on Claude with a different
         # model, so the council still has two distinct voices.
-        return call_claude(prompt, dict(cfg, claude_model=cfg.get("second_chair_model", "sonnet")))
+        # second_chair_effort (20 Nov 2026, adopted from another owner's council): an effort level for the CHALLENGER.
+        extra = {"_effort": cfg["second_chair_effort"]} if cfg.get("second_chair_effort") else {}
+        return call_claude(prompt, dict(cfg, claude_model=cfg.get("second_chair_model", "sonnet"), **extra))
     out_file = Path(tempfile.gettempdir()) / f"council-codex-{uuid.uuid4().hex[:8]}.txt"
     cmd = [exe, "exec", "-C", str(PROJECT), "-s", "read-only", "--skip-git-repo-check", "--ephemeral",
            "-c", "mcp_servers.agent_bridge.enabled=false",
@@ -1424,7 +1429,9 @@ def minutes_prompt(name, sid, floor, baseline=None, floor_mode=True, filed=None)
             f"unfounded, a strength that carried the item), as '- MEMBER NAME: lesson'. Omit the "
             f"section if there are none. The chair itself puts the lead's CONCLUSION at the top, so do not write a title "
             f"line and do not repeat the conclusion. Write '## Decided' for the owner: at most six short plain bullets, each "
-            f"something for the owner to do or something that is now settled. File references appear nowhere except one last "
+            f"something for the owner to do or something that is now settled. Settled means the owner's own ruling or something that "
+            f"actually happened; a price, figure, date or rule the council set itself is written as 'proposed: ...', never "
+            f"as the owner's own ('your ...'). File references appear nowhere except one last "
             f"section, '## Sources'. Output only the "
             f"minutes.\n\n{ctx_pack()}\n" + ctx_rules() + "=== THE SESSION ===\n" + "\n\n".join(floor))
 
@@ -2167,7 +2174,8 @@ def main():
             if code == NOT_STARTED:
                 return NOT_STARTED if (asked and i == 0) else 0
             if error:
-                log("Stopping: a member failed (often a usage limit). The hourly timer will retry.")
+                log("Stopping: a member failed (often a usage limit). Run the meeting again once the limit resets; "
+                    "where the hourly timer is installed (--install-schedule, Windows), it retries by itself.")
                 return code
             if done:
                 log("The minutes report the agenda complete (NEXT AGENDA: NONE). Marathon finished.")
