@@ -26,3 +26,6 @@ Every rule here was learned from a real failure.
 
 ## Raw notation on public pages
 - Internal encodings (Manuel de Codage `nHb`, database ids, "as recorded in the archive") stay in source notes. Public copy uses proper diacritics and no archive talk.
+
+## Speaker on every quote (21 Nov 2026, row N54)
+When two people's words sit side by side (an owner and a role model, a founder and a source), name the speaker on each quote. A role model's line written under "You:" was read as the owner's own.

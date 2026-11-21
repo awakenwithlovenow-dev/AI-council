@@ -77,3 +77,8 @@ Every rule here was learned from a real failure.
 - **`num_turns` in the JSON result tells you whether a call used tools** (more than 1 means it looked something up); record it with tokens, cost and seconds for every answer.
 - **Grade blind and one answer at a time,** against the ground truth, by a strong model that may read the sources; then check two or three of the grader's claims on the page before reporting them.
 - **Ask the questions that separate the variants:** a judgement call, a question that needs a specific detail, and a trap on a topic the source is silent on.
+
+## Usage-limit messages and tracked runs (20 Nov 2026, rows N53 and N57)
+- Usage-limit text changes ("hit your 5-hour limit · resets 1:30pm", "weekly limit"). Match on several short pieces, keep a test with the latest exact message, and treat a failed match as a reason to stop with a clear message, never a promise of a retry that will not happen.
+- Start long background programs as a job the chat is told about when it ends (the shell tool's background option). A detached `&` or `nohup` run gives no signal when it stops.
+- Several sessions sharing one folder must not edit or publish the same build file. Before publishing, check the version and the file times; a parallel session once published from the same build file while it was being edited (it happened to go out before the edits).

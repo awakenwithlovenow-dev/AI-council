@@ -135,6 +135,25 @@ Answer plainly:
 ## How many members (tested 20 Nov 2026)
 - The chair seats three or four members per meeting whatever the roster holds, so roster size barely changes the cost of one meeting and did not change the decision (five against seven, two questions, blind judge split one each; five about a fifth cheaper). Five to seven are all workable: keep a seat only if real questions would seat it and it brings a view no other seat holds. After five to ten meetings, read the seating lines in `chair.log` ("Seated for this topic") and offer to drop a member that was never seated. Two seats that look alike on paper can still add different views in practice; judge by what each says, not by the remit line.
 
+## A real owner's first day of meetings (20 Nov 2026)
+From the second owner's own system brief, each claim checked against the chair program before anything was changed. Fixed in template v2.4.4.
+- **Auto-resume must match the real message.** "You've hit your 5-hour limit · resets 1:30pm" matched none of the usage phrases, so a meeting stopped at turn 19 instead of waiting. Match "hit your", "hour limit" and "weekly limit" too, and add a test with the exact text. Never let a stop message promise a timer that does not exist on that system.
+- **Setup that never overwrites means updates never arrive.** A plugin update reached the commands but never the council's own copy of the program. Give an explicit update step (`new_council.py --update-program`: program files only, old copies kept, the council's files untouched, nothing copied in that does not parse) and run it at the start of a refresh.
+- **An owner's local change to the program must survive an update.** Before replacing her copy, adopt what she added (here `second_chair_effort`), or the update silently removes it.
+- **"Decided" in the minutes read as the owner's decision.** Council figures and prices were listed as hers in three of four meetings. The clerk now writes "Proposed:" for anything the owner has not ruled on, and the chat keeps the word.
+- **Run meetings as tracked background jobs, never detached with `&`.** A detached meeting stopped with no signal and was found an hour later.
+- **Before saying "her council does not get the fixes", compare the versions.** The program had not changed since her install; only the instructions had.
+
+## Seats from the owner's own record, beside role models (21 Nov 2026)
+- **Two kinds of fit, kept apart:** members *like* the owner (path, values, way of working) and members the owner *needs* (who speaks to the blind spots). Ranking only by likeness builds an echo; only by need builds a lecture.
+- **Created seats come from the owner's record, decisions first.** A hand sort of the owner's own list of open questions beat keyword counts: 26 of 52 open questions were about what is true or may be said, which made "Truth" its own seat. Keyword counts across files mostly measure common words.
+- **One area, one seat:** a created seat and a role model that would say the same thing are one seat; the role model goes on call (its file kept, brought in when a question is in its field).
+- **Quotes beside each other need their speaker on each one.** A member's line placed under "You:" was read as the owner's (caught by another session).
+- **A council run through chat helpers (no chair program) misses the chair's safeguards:** the challenger, the sign-off check, the facts sheet and after-check, usage logging and auto-resume. Say so when offering it, and prefer setting the council up with the template when decisions matter.
+
+## How every answer reads (21 Nov 2026, `references/answer-style.md`)
+A real owner found the council's answers "erratic, chaotic and unorganised" and ended up asking her Claude to talk "as a friend". The causes were in our own instructions: "plain and short" fighting "show everything for big decisions", the conclusion copied word for word (so council terms reached her), stacks of bold labels, four or five figures per paragraph repeated in every message, and every message restarting the story. Every answer now follows `references/answer-style.md`: a warm friend's everyday words, about one screen, in one line what it means, what the council thinks in two or three short paragraphs, what changed since last time, numbered next steps (at most five), what is still the owner's to decide, one question; at most three numbers a paragraph with the currency; guesses drawn and labelled as guesses; the overview page as the one home for detail; charts with the app's built-in visual tool and the dataviz skill when available.
+
 ## This plugin's extras: the hub and the commands
 
 Installing the plugin adds four commands and a desktop-style app.
