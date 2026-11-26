@@ -17,6 +17,12 @@ Every rule here was learned from a real failure.
 - Back up its evidence folders before re-running shared suites.
 - Respect constraints it records from the user (for example, "publish nothing this round"), even if an older prompt says otherwise.
 
+## Parallel chats for the owner (24 Nov 2026)
+- When the owner wants several workstreams in parallel, or "a new thread with multi threads", start ONE new hub chat with a full written brief (save it to a file first). The hub starts its own side chats. Never start the side chats from the current chat: they report back to whoever started them, and the owner did not want that ("i dont want any of the sub thread rpoerting to this thread").
+- The app cannot move a side chat under another chat. Detaching only lifts it to the top level. Getting this wrong costs stopped sessions and orphaned chats.
+- Detach the hub if it should stand alone. After the handover, the first chat no longer messages the threads; one message to the hub says what it now owns.
+- Each thread gets its own folder, touches nothing outside it, reads anything, and carries the owner's standing rules in its brief.
+
 ## Artifacts and publishing
 - Read the live artifact before republishing one you have not read in this session. If refused, diff the live copy against your previous build before overwriting.
 - Publishing to a live site always needs the user's explicit yes, every time.
