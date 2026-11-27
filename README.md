@@ -15,7 +15,7 @@ Build your own AI council: a small board of AI members designed from **your own 
   - the minutes keep evidence apart from agreement and say what the meeting changed;
   - decisions get a date to check later;
   - facts live in one register, the important ones are checked against the original, and anything that cannot be verified stays "unconfirmed" until you confirm it.
-- **Skills** Claude uses while building and running it: ai-council, headless-ai-calls, local-app-build, agent-handoff, citation-discipline, and persona-research (for researching a public figure as a role-model member, from their own published words).
+- **Skills** Claude uses while building and running it: ai-council, headless-ai-calls, local-app-build, agent-handoff, citation-discipline, persona-research (for researching a public figure as a role-model member, from their own published words), and author-strategy-research (for researching what best-selling authors in the owner's field teach, without copying their books).
 
 ## Requirements
 

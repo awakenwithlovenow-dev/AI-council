@@ -1,6 +1,6 @@
 ---
 name: persona-research
-description: Use when researching a real public figure so they can serve as an adviser persona, council member or case study, or when asked to "get everything" on a person, compare two people, read interviews or podcasts, pull YouTube transcripts, transcribe podcast audio, or check whether someone has enough material and no trust problem. Covers the bar for a seat, the only reading methods that count as word for word, the local transcription tool, the trust check, the second check of serious claims, reader limits, and the dossier format. Encodes a real five-day council build (Nov 2026) and the mistakes it cost.
+description: Use when researching a real public figure so they can serve as an adviser persona, council member or case study, or when asked to "get everything" on a person, compare two people, read interviews or podcasts, pull YouTube transcripts, transcribe podcast audio, or check whether someone has enough material and no trust problem. Covers the bar for a seat, the only reading methods that count as word for word, the local transcription tool, the trust check, the second check of serious claims, reader limits, the dossier format, and testing a role-model seat with blind grading before it is used. Encodes a real five-day council build (Nov 2026) and the mistakes it cost.
 ---
 
 # Persona research
@@ -95,3 +95,17 @@ identity in three lines; what they stand for; how they reason; the questions the
 - **Write the member file from the dossier only,** one page (900 to 1,100 words), with the person's silent topics listed, and end it with the line to check before crediting a rule, figure or quote.
 - **Scan the pack** for the first owner's name, business and products before sending.
 - **A one-page member with look-ups beat a long one** in a blind test (same usefulness, two thirds of the cost per meeting); a medium file (about 2,000 words) was weakest on facts. Do not hand over long member files.
+
+## Testing a role-model seat before it is used (21 to 26 Nov 2026)
+From a role-model pack built for the second owner's council (Nov 2026), which went from 6 of 12 answers passing to 10 of 12 and then a clean final run.
+- **An independent check of the member file first:** a different model reads every line of the member file against the dossier and the transcripts (74 of 77 lines were right; the other three were fixed).
+- **A stand-in meeting when the real chair is not at hand:** shared rules, the member file and the dossier as the system prompt, a generic brief with no private facts, one question per call, no tools. Questions cover the person's field, a topic they are silent on, a veto bait, and an overlap with another seat (for example a question about a spouse's approach when the spouse has their own seat).
+- **Blind grading, one answer at a time,** against the member file, the dossier and the raw transcripts: faithful, silence and limits, useful, format, each 0 to 2. A pass needs no zero and full marks on faithful. Script checks (tags exist, quotes found, length) are not enough: they missed a quote she never said.
+- **Rounds on the cheap model, one final run on the model the council uses,** with every cited minute checked in the notes.
+- **What the grading found, now rules for every member file:**
+  - Bold lead-ins and italic summaries are labelled as summaries and never quoted as the person's words.
+  - The person's guidance and their own history are kept apart ("advises" is not "did").
+  - On a silent topic the seat says there is nothing in the person's conversations and stops, unless the chair asks for the nearest lines.
+  - The member file and the dossier must list the same silent topics.
+  - A seat that overlaps another seat names the other seat and speaks only for its own person.
+- The speaking rules can push a member file past 1,100 words (one ended at about 1,230). Say so to the owner rather than cutting the rules.

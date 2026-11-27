@@ -158,6 +158,23 @@ From the second owner's own system brief, each claim checked against the chair p
 A real owner found the council's answers "erratic, chaotic and unorganised" and ended up asking her Claude to talk "as a friend". The causes were in our own instructions: "plain and short" fighting "show everything for big decisions", the conclusion copied word for word (so council terms reached her), stacks of bold labels, four or five figures per paragraph repeated in every message, and every message restarting the story. Every answer now follows `references/answer-style.md`: a warm friend's everyday words, about one screen, in one line what it means, what the council thinks in two or three short paragraphs, what changed since last time, numbered next steps (at most five), what is still the owner's to decide, one question; at most three numbers a paragraph with the currency; guesses drawn and labelled as guesses; the overview page as the one home for detail; charts with the app's built-in visual tool and the dataviz skill when available.
 - **Revised the same day (21 Nov 2026):** an owner then asked for the whole answer in the chat and more context. The chat now carries the full answer told like a friend (in one line, the overall picture, the suggested steps with why, what each member said and why, disagreements, still yours to decide, at most two questions last), with no one-screen cap; every review and big decision gets a produced overview page with a member map and a steps timeline; corrections on the page are hidden behind one button. Template v2.5.1.
 
+## Feeding a council new information (26 Nov 2026)
+- Compare it with `memory/RULINGS.md` first. Send one brief file split into confirmed by the owner, to square (clashes with rulings), and unconfirmed (context only). Say what was and was not checked.
+- Leave the council's own memory and rulings for the council's chat to file.
+- Many open questions go on one local answer page the owner fills in once, not a run of questions in the chat.
+
+## Trial seats before adding them (21 Nov 2026)
+- Put a new seat in as a trial (kept apart from the approved members, for example a `trial-<name>.md` file beside them), then run the same question or overview twice: with the approved members only, and with the trial seats. Compare the two plans, what each new seat changed in the minutes, and the cost.
+- In the first such test (seven against eleven, same overview) both runs reached the same plan; the four new seats made it gentler and more truthful and cost about a fifth more. A seat that changes nothing in the minutes is the first to question.
+
+## Before asking the owner anything (21 and 26 Nov 2026)
+- **Look for the answer first:** memory, the rulings file, and the other chats or threads on the same work (in the Claude app, read the linked sessions). Seating had been decided in another thread and asking again cost the owner's patience; once learned, a decision goes into memory at once.
+- **Ready answers start from the owner's own recorded words.** A choice of "bare minimum / comfortable / dream" left out what the owner had already said ("above basic"), so the owner picked the nearest answer and corrected it later.
+
+## Reference material: strategies and case studies (26 Nov 2026, template v2.5.2)
+- Research such as the business authors' strategies is **reference, never a member's voice and never the owner's facts.** The council attaches it (`references/business-strategies.md`, plus any case studies the council keeps, copied into `outputs/council/files/`) only when a question is about reviewing the business, a hard stretch, cash, habits or a plan; in a review, helpers may read it for the way forward and mark it **[council]**.
+- Keep two versions: the full research with sources and quotes stays private; the public template gets a short own-words version with source codes and personal details removed (see the author-strategy-research skill).
+
 ## This plugin's extras: the hub and the commands
 
 Installing the plugin adds four commands and a desktop-style app.

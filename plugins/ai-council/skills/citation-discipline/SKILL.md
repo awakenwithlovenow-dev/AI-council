@@ -29,3 +29,14 @@ Every rule here was learned from a real failure.
 
 ## Speaker on every quote (21 Nov 2026, row N54)
 When two people's words sit side by side (an owner and a role model, a founder and a source), name the speaker on each quote. A role model's line written under "You:" was read as the owner's own.
+
+## Quotes and counts gathered by helpers (26 Nov 2026)
+- Match them by script against the original page text (the tool results), never against the helper's own notes. Compare letters and digits only and split on ellipses. Fix or drop every miss.
+- Recheck every count on the screen or in the files before reporting it.
+
+## Writing an owner's answers into files (26 Nov 2026)
+- Before writing, compare each answer with the earlier rulings and decisions file. Step 4 above applies here too. A clash found after writing has already spread.
+- After writing, check by script that every answer landed, one probe per answer, before saying it is done.
+
+## Summaries are not quotes (26 Nov 2026)
+- A line written as a summary of someone's views (a bold lead-in, an italic conviction line) never goes in quotation marks or under their name. Quote only lines found in their own words, with the source.
